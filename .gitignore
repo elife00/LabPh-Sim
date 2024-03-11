@@ -1,2 +1,6 @@
 # ignore all mp4
 *.mp4
+
+# ignore all gif
+*.gif
+
