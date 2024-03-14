@@ -1,0 +1,22 @@
+Meep is a free and open-source software package for the simulation of electromagnetic fields via the finite-difference time-domain (FDTD) method.
+Its application extend also to the simulation of photonic elements and circuits.  
+
+The finite-difference time-domain (FDTD) method is a widely used technique: the space is divided into a discrete grid and the fields are evolved in discrete time steps.
+The discretization of time id directly determined by the the space discretization and as the steps are made finer and finer, the simulation becomes a closer and closer approximation for the true continuous equations.
+
+Considering the 1D case for simplicity, the FDTD algorithm starts from the Ampere's and Faraday's laws.
+\begin{equation}
+    \mu \pdv{H_y}{t} = \pdv{E_z}{x} \qquad\qquad\qquad \varepsilon \pdv{H_z}{t} = \pdv{H_y}{x}
+\end{equation}
+As the space and time are discretized, the electric and magnetic fields can be written using a descrete notation as \(E_z(x, t) = E_z (m\Delta x, q \Delta t) = E_z^q[m]\) and \(H_y(x, t) = H_y(m\Delta x, q \Delta t) = H_y^q[m]\). This allows to replace the derivatives in the laws with finite differences
+\begin{align}
+    \mu \frac{H_y^{q+\frac{1}{2}}[m+\frac{1}{2}] - H_y^{q-\frac{1}{2}}[m+\frac{1}{2}]}{\Delta t} = \frac{E_z^q[m+1] - E_z^q[m]}{\Delta x}
+    \\
+    \varepsilon\frac{E_z^{q+1}[m] - E_z^q[m]}{\Delta t} = \frac{H_y^{q+\frac{1}{2}}[m+\frac{1}{2}] - H_y^{q+\frac{1}{2}}[m-\frac{1}{2}]}{\Delta x}
+\end{align}
+Finally, these difference equations are turned into update equation to determine the ''future fields'' knowing the ''past ones''
+\begin{align}
+    H_y^{q+\frac{1}{2}} \left[ m+\frac{1}{2} \right] = H_y^{q-\frac{1}{2}} \left[ m+\frac{1}{2} \right] + \frac{\Delta t}{\mu \Delta x} \left( E_Z^q[m+1] - E_z^q[m] \right)
+    \\
+    E_z^{q+1} [m] = E_z^q[m] + \frac{\Delta t}{\varepsilon \Delta x} \left( H_y^{q+\frac{1}{2}}\left[ m+\frac{1}{2} \right] - H_y^{q+\frac{1}{2}}\left[ m-\frac{1}{2} \right] \right)
+\end{align}

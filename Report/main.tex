@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage[a4paper, total={17cm, 25.7cm}]{geometry}
+\usepackage[main=english]{babel} % lingua 
+\fontsize{12}{12}
+
+\usepackage{graphicx, physics, hyperref, tikz}
+\usepackage{subcaption}
+\usepackage{wrapfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{siunitx}
+
+\usepackage[style=ieee]{biblatex}
+% \addbibresource{biblio.bib}
+
+\setlength{\parindent}{0pt}
+
+
+\title{Simulation using MEEP library}
+\author{Elisabetta Ferri}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+ 
+\begin{abstract}
+
+The results produced by the simulation of photonics elements are presented. Using the MEEP software, three elements were simulated: a directional coupler, a Bragg rifractor and a micro ring resonator.
+
+\end{abstract}
+
+\section{Introduction}
+\input{introduction}
+
+\section{Directional Coupler}
+\input{directional_coupler}
+
+\section{Bragg reflector}
+\input{Bragg_reflector}
+
+\section{Micro Ring Resonator}
+\input{ring_resonator}
+
+\printbibliography
+\addcontentsline{toc}{chapter}{Bibliography}
+\end{document}
