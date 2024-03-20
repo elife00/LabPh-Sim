@@ -18,3 +18,5 @@ main.synctex.gz
 
 # ignore output of simulation
 Ring/dataRing.txt
+
+FailedAttempts.ipynb
