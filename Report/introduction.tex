@@ -22,3 +22,13 @@ Finally, these difference equations are turned into update equation, written in 
 \end{align}
 
 \subsection{Simulation}
+
+A MEEP simulation requires the definition of some parameters:
+\begin{itemize}
+    \item the \textbf{geometry} describes the object to simulate and specify its dimensions, shape and material;
+    \item the \textbf{source} describe the source of the field, its kind (e.g. continuous, Gaussian, ...) and its frequency;
+    \item the \textbf{resolution} of the simulation tells how precise the evolution of the fields should be;
+    \item the \textbf{PML} are the simulation borders, very important to avoid spurious effects.
+\end{itemize}
+
+\textcolor{red}{Da rivedere!!}
