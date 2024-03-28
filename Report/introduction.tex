@@ -1,12 +1,12 @@
 Meep is a free and open-source software package for the simulation of electromagnetic fields via the finite-difference time-domain (FDTD) method.
-Its application extend also to the simulation of photonic elements and circuits.  
+Its application extends also to the simulation of photonic elements and circuits.  
 
 The finite-difference time-domain (FDTD) method is a widely used technique: the space is divided into a discrete grid and the fields are evolved in discrete time steps.
-The discretization of time id directly determined by the the space discretization and as the steps are made finer and finer, the simulation becomes a closer and closer approximation for the true continuous equations.
+The discretization of time is directly determined by the space discretization and as the steps are made finer and finer, the simulation becomes a closer and closer approximation for the true continuous equations.
 
-Considering the 1D case for simplicity, the FDTD algorithm starts from the Ampere's and Faraday's laws written in Eq. \ref*{eq:Ampere_Faraday}.
+Considering the 1D case for simplicity, the FDTD algorithm starts from Faraday's and Ampere's laws written in Eq. \ref*{eq:Ampere_Faraday}.
 \begin{equation} \label{eq:Ampere_Faraday}
-    \mu \pdv{H_y}{t} = \pdv{E_z}{x} \qquad\qquad\qquad \varepsilon \pdv{H_z}{t} = \pdv{H_y}{x}
+    \mu \pdv{H_y}{t} = \pdv{E_z}{x} \qquad\qquad\qquad \varepsilon \pdv{E_z}{t} = \pdv{H_y}{x}
 \end{equation}
 As the space and time are discretized, the electric and magnetic fields can be written using a descrete notation as \(E_z(x, t) = E_z (m\Delta x, q \Delta t) = E_z^q[m]\) and \(H_y(x, t) = H_y(m\Delta x, q \Delta t) = H_y^q[m]\). This allows to replace the derivatives in the laws with finite differences, obtaining the difference equation in Eq. \ref*{eq:difference_eqs}.
 \begin{align}\label{eq:difference_eqs}
@@ -25,10 +25,8 @@ Finally, these difference equations are turned into update equation, written in 
 
 A MEEP simulation requires the definition of some parameters:
 \begin{itemize}
-    \item the \textbf{geometry} describes the object to simulate and specify its dimensions, shape and material;
-    \item the \textbf{source} describe the source of the field, its kind (e.g. continuous, Gaussian, ...) and its frequency;
-    \item the \textbf{resolution} of the simulation tells how precise the evolution of the fields should be;
-    \item the \textbf{PML} are the simulation borders, very important to avoid spurious effects.
+    \item the \textbf{geometry}, which describes the object to simulate and specify its dimensions, shape and material;
+    \item the \textbf{sources}, which describe the sources of the field, its kind (e.g. continuous, Gaussian, ...) and its frequency;
+    \item the \textbf{resolution} of the simulation, which tells how precise the evolution of the fields should be;
+    \item the \textbf{PML}, which are the simulation borders and they are very important to avoid spurious effects.
 \end{itemize}
-
-\textcolor{red}{Da rivedere!!}
