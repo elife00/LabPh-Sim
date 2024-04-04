@@ -1,4 +1,4 @@
-A distributed Bragg reflector is composed of alternating layers of two materials, respectively with refractive index \(n_1 = 1.5\) (silica) and \(n_2 = 2.5\) (titanium dioxide), as represented in Fig. \ref{fig:bragg_design}. This object behaves as a mirror for a certain range of frequency determined by the widths of the layers, the refractive index of the two materials and the number of layers.
+A distributed Bragg reflector (DBR) is composed of alternating layers of two materials, respectively with refractive index \(n_1 = 1.5\) (silica) and \(n_2 = 2.5\) (titanium dioxide), as represented in Fig. \ref{fig:bragg_design}. This object behaves as a mirror for a certain range of frequency determined by the widths of the layers, the refractive index of the two materials and the number of layers.
 
 \begin{figure}[H]
     \centering
@@ -7,7 +7,7 @@ A distributed Bragg reflector is composed of alternating layers of two materials
     \label{fig:bragg_design}
 \end{figure}
 
-To measure the spectrum of this object, two detectors (blue lines in the figure) are used, one for the transmitted spectrum and one for the reflected one. The Bragg reflector is shined with a Gaussian source at wavelength \(\lambda = 1.55 \mu m\) and frequency width half of the central frequency. The reflector is designed to have this wavelength as the center of its spectrum and this is obtained by imposing the condition of constructive interference in the reflection. This corresponds to constructing the layers following Eq. \ref{eq:grating_period}  
+To measure the spectrum of this object, two detectors (blue lines in Fig. \ref{fig:bragg_design}) are used, one for the transmitted spectrum and one for the reflected one. The Bragg reflector is shined with a Gaussian source (red line in Fig. \ref{fig:bragg_design}) at wavelength \(\lambda = 1.55\ \mu m\) and frequency width half of the central frequency. The reflector is designed to have this wavelength as the center of its spectrum and this is obtained by imposing the condition of constructive interference in the reflection. This corresponds to constructing the layers following Eq. \ref{eq:grating_period}  
 \begin{equation}\label{eq:grating_period}
     n_1 L_1 = \frac{\lambda}{4} \qquad\qquad\qquad n_2 L_2 = \frac{\lambda}{4}
 \end{equation}
@@ -17,7 +17,7 @@ The reflectance and transmittance spectrum are reported in Fig. \ref{fig:bragg_s
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{Figures/bragg_spectrum.png}
-    \caption{Transmission and reflection spectra of the Bragg reflector shined with a Gaussian source. The reflectivity and transmissivity are reported in dB to highlight how low is the transmittivity in the characteristic range of the Bragg reflector.}
+    \caption{Transmission and reflection spectra of the DBR shined with a Gaussian source. The reflectivity and transmissivity are reported in dB to highlight how low is the transmittivity in the characteristic range of the Bragg reflector.}
     \label{fig:bragg_spectrum}
 \end{figure}
 
@@ -34,16 +34,17 @@ The result of the simulation is represented in Fig. \ref{fig:bragg_attenuation_v
     \label{fig:bragg_attenuation_vs_index}
 \end{figure}
 
-Mirrors made from Bragg reflectors reach a reflectance way higher than even the better metallic mirrors. They are the ideal mirrors for implementing a Fabry-Perot-like cavity, as the one represented in Fig. \ref{fig:bragg_cavity_design}.
+\subsection{Cavity implemented with two DBR}
+Mirrors made from DBRs reach a reflectance way higher than even the better metallic mirrors. They are the ideal mirrors for implementing a Fabry-Perot-like cavity, as the one represented in Fig. \ref{fig:bragg_cavity_design}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{Figures/bragg_cavity_design.png}
-    \caption{Design of a Fabry-Perot cavity using Bragg reflectors instead of metallic mirrors. Each mirror is made of 7 layers and differently from the first simulation, the whole simulation space is made from a material of refractive index \(n_2 = 1.5\). The cavity is made from the material with a lower refractive index and it is \(1.5\ \mu m\) wide.}
+    \caption{Design of a Fabry-Perot cavity using DBRs instead of metallic mirrors. Each mirror is made of 7 layers and differently from the first simulation, the whole simulation space is made from a material of refractive index \(n_2 = 1.5\). The cavity is made from the material with a lower refractive index and it is \(1.5\ \mu m\) wide.}
     \label{fig:bragg_cavity_design}
 \end{figure}
 
-The presence of the cavity introduces a resonance in the system resulting in a different spectrum, with a peak in transmission in correspondence with this resonance, as shown in Fig. \ref{fig:bragg_vs_cavity_spectrum}. From this peak in the spectrum, it's possible to extract the Q-factor of the cavity, via a Lorentzian fit. The result of the fit is shown in Fig. \ref{fig:bragg_cavity_spectrum_fit} and returns a Q-factor\(=52\).
+The presence of the cavity introduces a resonance in the system resulting in a different spectrum, with a peak in transmission in correspondence with this resonance, as shown in Fig. \ref{fig:bragg_vs_cavity_spectrum}. From this peak in the spectrum, it's possible to extract the Q-factor of the cavity, via a Lorentzian fit around the peak. The result of the fit is shown in Fig. \ref{fig:bragg_cavity_spectrum_fit} and returns a Q-factor\(=52\).
 
 \begin{figure}[H]
     \centering
@@ -60,6 +61,7 @@ The presence of the cavity introduces a resonance in the system resulting in a d
         \caption{Lorentzian fit of the portion of the transmission spectrum of the cavity around the cavity's resonance to extract the Q-factor of the cavity.}
         \label{fig:bragg_cavity_spectrum_fit}
     \end{subfigure}
+    \caption{Spectra of the Fabry-Perot cavity constructed using DBRs.}
 \end{figure}
 
 The Q-factor depends on the quality of the mirrors, namely from the refractive index contrast between the layers, as shown in Fig. \ref{fig:bragg_cavity_qfactor_vs_index}, in fact, the quality factor of the cavity grows with the contrast, and so with the reflectivity of the mirrors.
@@ -67,6 +69,6 @@ The Q-factor depends on the quality of the mirrors, namely from the refractive i
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\linewidth]{Figures/bragg_cavity_qfactor_vs_index.png}
-    \caption{Dependence of the Q-factor of the cavity from the reflectiveness of the mirrors, namely from the refractive index contrast between the layers forming the mirrors.}
+    \caption{Dependence of the Q-factor of the cavity from the refractive index contrast.}
     \label{fig:bragg_cavity_qfactor_vs_index}
 \end{figure}
