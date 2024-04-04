@@ -1,23 +1,27 @@
 Meep is a free and open-source software package for the simulation of electromagnetic fields via the finite-difference time-domain (FDTD) method.
 Its application extends also to the simulation of photonic elements and circuits.  
 
-The finite-difference time-domain (FDTD) method is a widely used technique: the space is divided into a discrete grid and the fields are evolved in discrete time steps.
+The FDTD method is a widely used technique: the space is divided into a discrete grid and the fields are evolved in discrete time steps.
 The discretization of time is directly determined by the space discretization and as the steps are made finer and finer, the simulation becomes a closer and closer approximation for the true continuous equations.
 
-Considering the 1D case for simplicity, the FDTD algorithm starts from Faraday's and Ampere's laws written in Eq. \ref*{eq:Ampere_Faraday}.
-\begin{equation} \label{eq:Ampere_Faraday}
+Considering the 1D case for simplicity, the FDTD algorithm starts from Faraday's and Ampere's laws written in Eq. \ref*{eq:Faraday_Ampere}.
+\begin{equation} \label{eq:Faraday_Ampere}
     \mu \pdv{H_y}{t} = \pdv{E_z}{x} \qquad\qquad\qquad \varepsilon \pdv{E_z}{t} = \pdv{H_y}{x}
 \end{equation}
-As the space and time are discretized, the electric and magnetic fields can be written using a descrete notation as \(E_z(x, t) = E_z (m\Delta x, q \Delta t) = E_z^q[m]\) and \(H_y(x, t) = H_y(m\Delta x, q \Delta t) = H_y^q[m]\). This allows to replace the derivatives in the laws with finite differences, obtaining the difference equation in Eq. \ref*{eq:difference_eqs}.
-\begin{align}\label{eq:difference_eqs}
+As the space and time are discretized, the electric and magnetic fields can be written using a discrete notation as \(E_z(x, t) = E_z (m\Delta x, q \Delta t) = E_z^q[m]\) and \(H_y(x, t) = H_y(m\Delta x, q \Delta t) = H_y^q[m]\). This allows to replace the derivatives in the laws with finite differences, obtaining the difference equation in Eq.s \ref*{eq:difference_eqs_E} and \ref*{eq:difference_eqs_B}.
+\begin{align}
+    \label{eq:difference_eqs_E}
     \mu \frac{H_y^{q+\frac{1}{2}}[m+\frac{1}{2}] - H_y^{q-\frac{1}{2}}[m+\frac{1}{2}]}{\Delta t} = \frac{E_z^q[m+1] - E_z^q[m]}{\Delta x}
     \\
+    \label{eq:difference_eqs_B}
     \varepsilon\frac{E_z^{q+1}[m] - E_z^q[m]}{\Delta t} = \frac{H_y^{q+\frac{1}{2}}[m+\frac{1}{2}] - H_y^{q+\frac{1}{2}}[m-\frac{1}{2}]}{\Delta x}
 \end{align}
-Finally, these difference equations are turned into update equation, written in Eq. \ref*{eq:update_eqs}, to determine the ''future fields'' knowing the ''past ones''
-\begin{align}\label{eq:update_eqs}
+Finally, these difference equations are turned into update equations, written in Eq.s \ref*{eq:update_eqs_E} and \ref*{eq:update_eqs_B}, to determine the ''future fields'' knowing the ''past ones''
+\begin{align}
+    \label{eq:update_eqs_E}
     H_y^{q+\frac{1}{2}} \left[ m+\frac{1}{2} \right] = H_y^{q-\frac{1}{2}} \left[ m+\frac{1}{2} \right] + \frac{\Delta t}{\mu \Delta x} \left( E_Z^q[m+1] - E_z^q[m] \right)
     \\
+    \label{eq:update_eqs_B}
     E_z^{q+1} [m] = E_z^q[m] + \frac{\Delta t}{\varepsilon \Delta x} \left( H_y^{q+\frac{1}{2}}\left[ m+\frac{1}{2} \right] - H_y^{q+\frac{1}{2}}\left[ m-\frac{1}{2} \right] \right)
 \end{align}
 
@@ -27,6 +31,8 @@ A MEEP simulation requires the definition of some parameters:
 \begin{itemize}
     \item the \textbf{geometry}, which describes the object to simulate and specify its dimensions, shape and material;
     \item the \textbf{sources}, which describe the sources of the field, its kind (e.g. continuous, Gaussian, ...) and its frequency;
-    \item the \textbf{resolution} of the simulation, which tells how precise the evolution of the fields should be;
-    \item the \textbf{PML}, which are the simulation borders and they are very important to avoid spurious effects.
+    \item the \textbf{resolution} of the simulation, which tells how precise the evolution of the fields should be, namely how fine is the spacial grid;
+    \item the \textbf{PML}, which are the simulation borders and they are very important to avoid spurious effects from the back-reflection of the field on the borders.
 \end{itemize}
+
+The spatial unit of the MEEP simulation corresponds by default to \(1\ \mu m\), while the ratio between space and time is set to \(1\).
